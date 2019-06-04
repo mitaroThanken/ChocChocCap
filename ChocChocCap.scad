@@ -1,12 +1,25 @@
 $fs = 0.10;
 
-stem_size = [1.20, 3.00, 3.00 + 2.00];
+stem_size = [1.25, 2.98, 3.50 + 2.00];
+stem_diff = [stem_size[0], stem_size[1] / 2, stem_size[2] + 1.00];
 stem_offset = [5.70 / 2, 0, stem_size[2] / 2];
 
-translate(stem_offset)
-    cube(stem_size, true);
-translate([-1 * stem_offset[0], stem_offset[1], stem_offset[2]])
-    cube(stem_size, true);
+module stem_one_side() {
+    difference() {
+        cube(stem_size, true);
+        translate([stem_size[0] * 2.6 / 3, 0, 0])
+            cube(stem_diff, true);
+        translate([stem_size[0] * -2.6 / 3, 0, 0])
+            cube(stem_diff, true);
+    }
+}
+
+module choc_stems() {
+    translate(stem_offset)
+        stem_one_side();
+    translate([-1 * stem_offset[0], stem_offset[1], stem_offset[2]])
+        stem_one_side();
+}
 
 original_top = [22.00, 22.00];
 original_bottom = [24.00, 24.00];
@@ -45,6 +58,8 @@ module keycap_shape(ratio) {
 
 outer_ratio = 18.50 / original_bottom[0];
 inner_ratio = 14.50 / original_top[0];
+
+choc_stems();
 
 difference() {
     keycap_shape(outer_ratio);
