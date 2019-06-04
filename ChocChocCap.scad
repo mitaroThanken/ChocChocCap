@@ -56,13 +56,21 @@ module keycap_shape(ratio) {
     keycap_shape_mod_height(ratio, cap_height);
 }
 
-outer_ratio = 18.50 / original_bottom[0];
-inner_ratio = 15.00 / original_top[0];
+module ChocChocCap() {
+    outer_ratio = 18.50 / original_bottom[0];
+    inner_ratio = 15.00 / original_top[0];
 
-choc_stems();
+    choc_stems();
 
-difference() {
-    keycap_shape(outer_ratio);
-    translate([0, 0, -1 * bottom_sphere_d])
-        keycap_shape_mod_height(inner_ratio, stem_size[2] - 2.00);
+    difference() {
+        keycap_shape(outer_ratio);
+        translate([0, 0, -1 * bottom_sphere_d])
+            keycap_shape_mod_height(inner_ratio, stem_size[2] - 2.00);
+    }
 }
+
+mirror([0, 0, 1])
+    for (x = [0, 1, 2, 3, 4])
+        for (y = [0, 1, 2, 3])
+            translate([19.5 * x, 19.5 * y, 0])
+                ChocChocCap();
