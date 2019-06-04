@@ -57,7 +57,7 @@ module keycap_shape(ratio) {
 }
 
 outer_ratio = 18.50 / original_bottom[0];
-inner_ratio = 14.50 / original_top[0];
+inner_ratio = 15.00 / original_top[0];
 
 choc_stems();
 
