@@ -1,6 +1,6 @@
 $fs = 0.10;
 
-stem_size = [1.25, 2.98, 3.50 + 2.00];
+stem_size = [1.15, 2.98, 3.50 + 2.00];
 stem_diff = [stem_size[0], stem_size[1] / 2.10, stem_size[2] + 1.00];
 stem_offset = [5.70 / 2, 0, stem_size[2] / 2];
 
