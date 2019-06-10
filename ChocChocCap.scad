@@ -70,7 +70,7 @@ module ChocChocCap() {
 }
 
 mirror([0, 0, 1])
-    for (x = [0, 1, 2, 3, 4])
-        for (y = [0, 1, 2, 3])
+    for (x = [0, 1, 2])
+        for (y = [0, 1, 2])
             translate([19.5 * x, 19.5 * y, 0])
                 ChocChocCap();
