@@ -73,12 +73,18 @@ module ChocChocCap() {
 
 function dish_r(w, d) = (w * w + 4 * d * d) / (8 * d);
 
-difference() {
-    ChocChocCap();
-    translate([0, 0, 15])
-        rotate([90, 0, 0])
-            cylinder(r = dish_r(5, 15), h = 60, center = true);
-};
+mirror([0, 0, 1])
+    for (x = [0, 1])
+        for (y = [0, 1])
+            translate([19.5 * x, 19.5 * y, 0])        
+                difference() {
+                    ChocChocCap();
+                    translate([0, 0, 15])
+                        rotate([90, 0, 0])
+                            cylinder(r = dish_r(5, 15), h = 60, center = true);
+                    translate([0, 0, 15])
+                        cube([20, 20, 3], true); 
+                };
 /*
 difference() {
     ChocChocCap()
