@@ -1,4 +1,5 @@
 $fs = 0.10;
+$fa = 0.25;
 
 stem_size = [1.25, 2.98, 3.50 + 2.00];
 stem_buffer = 1.2;
@@ -64,14 +65,27 @@ module ChocChocCap() {
     choc_stems();
 
     difference() {
-        keycap_shape(outer_ratio);
+        keycap_shape_mod_height(outer_ratio, stem_size[2] - 2.00 + 12.00);
         translate([0, 0, -1 * bottom_sphere_d])
             keycap_shape_mod_height(inner_ratio, stem_size[2] - 2.00);
     }
 }
 
-mirror([0, 0, 1])
-    for (x = [0, 1])
-        for (y = [0, 1])
-            translate([19.5 * x, 19.5 * y, 0])
-                ChocChocCap();
+function dish_r(w, d) = (w * w + 4 * d * d) / (8 * d);
+
+difference() {
+    ChocChocCap();
+    translate([0, 0, 15])
+        rotate([90, 0, 0])
+            cylinder(r = dish_r(5, 15), h = 60, center = true);
+};
+/*
+difference() {
+    ChocChocCap()
+    translate([0, 0, 12])
+      rotate([- 10, 0, 0])
+        translate([0, 0, dish_r(15, 10) - 10])
+          rotate([90, 0, 0])
+            cylinder(r = dish_r(10, 10), h = 60, /* 適当に十分な長さ / center = true);
+}
+*/
